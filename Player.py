@@ -74,8 +74,6 @@ class MC(Player):
         if len(all_candidates) == 0:
             return -1
         else:
-        
-            # ReverseCommon.print_board(board)
             index = random.randint(0, len(all_candidates) - 1)
             return all_candidates[index]
 
@@ -161,4 +159,7 @@ class MC(Player):
         # return list(max(score_map, key=(lambda x: score_map[x])))
         # print max(score_map.values()[0])
         # print score_map
-        return max(score_map.values()[0])
+        if len(score_map)== 0:
+            return self.next_rand(me_color, board)
+        else:
+            return max(score_map.values()[0])
