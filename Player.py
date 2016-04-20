@@ -60,6 +60,7 @@ class NextStoneMaxAi(Player):
             score = ReverseCommon.get_score(next_board, self._color)
 
             if not score_candidates_map.has_key(score):
+            # if score in score_candidates_map:
                 score_candidates_map[score] = []
 
             score_candidates_map[score].append(candidates);
@@ -84,6 +85,7 @@ class Probability_select(Player):
             next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
             score = ReverseCommon.get_score(next_board, self._color)
             if not score_candidates_map.has_key(score):
+            # if score in score_candidates_map:
                 score_candidates_map[score]=[]
             score_candidates_map[score].append(candidates)
         
@@ -117,6 +119,7 @@ class Probability_select(Player):
 
             get_chance = len(enemy_candidates)
             if not chance_candidates_map.has_key(get_chance):
+            # if get_chance in chance_candidates_map:
                 chance_candidates_map[get_chance]=[]
             chance_candidates_map[get_chance].append(candidates)
 
@@ -139,6 +142,7 @@ class Probability_select(Player):
             score = ReverseCommon.get_score(next_board, self._color)
 
             if not score_candidates_map.has_key(score):
+            # if score in score_candidates_map:
                 score_candidates_map[score] = []
 
             score_candidates_map[score].append(candidates);
@@ -196,6 +200,7 @@ class Less_chance(Player):
             next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
             score = ReverseCommon.get_score(next_board, self._color)
             if not score_candidates_map.has_key(score):
+            # if score in score_candidates_map:
                 score_candidates_map[score]=[]
             score_candidates_map[score].append(candidates)
         
@@ -229,6 +234,7 @@ class Less_chance(Player):
 
             get_chance = len(enemy_candidates)
             if not chance_candidates_map.has_key(get_chance):
+            # if get_chance in chance_candidates_map:
                 chance_candidates_map[get_chance]=[]
             chance_candidates_map[get_chance].append(candidates)
 
@@ -298,8 +304,8 @@ class MC(Player):
         for this_candidate in main_candidates:
             this_board = ReverseCommon.put_stone(board, me_color, this_candidate[0], this_candidate[1])
             score_map[str(this_candidate)] = [0,this_candidate]
-            # for i in range(100):
-            for i in [None]*100:
+            for i in range(10):
+            # for i in [None]*10:
                 loop_board = copy.deepcopy(this_board)
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):

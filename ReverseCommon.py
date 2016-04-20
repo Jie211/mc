@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import copy
-from numba import jit
+import sys
+# from numba import jit
+# import numba
 
 # 定数
 # 何も置かれていない
@@ -34,7 +36,6 @@ def get_remain(board):
     return count
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_reversible_stone(board, i, j, color):
     """ 指定座標の右側に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -47,7 +48,6 @@ def has_right_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_reversible_stone(board, i, j, color):
     """ 指定座標の左側に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -60,7 +60,6 @@ def has_left_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_upper_reversible_stone(board, i, j, color):
     """ 指定座標の上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -73,7 +72,6 @@ def has_upper_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_lower_reversible_stone(board, i, j, color):
     """ 指定座標の下に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -86,7 +84,6 @@ def has_lower_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_upper_reversible_stone(board, i, j, color):
     """ 指定座標の右上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -101,7 +98,6 @@ def has_right_upper_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_lower_reversible_stone(board, i, j, color):
     """ 指定座標の左下に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -116,7 +112,6 @@ def has_left_lower_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_upper_reversible_stone(board, i, j, color):
     """ 指定座標の左上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -131,7 +126,6 @@ def has_left_upper_reversible_stone(board, i, j, color):
     return False
 
 
-@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_lower_reversible_stone(board, i, j, color):
     """ 指定座標の右下に返せる石があるか調べる """
     enemy = not(color)
@@ -151,7 +145,6 @@ def is_game_set(board):
     if len(get_puttable_points(board, WHITE)) == 0 and len(get_puttable_points(board, BLACK)) == 0:
         return True
     return False
-
 
 def get_puttable_points(board, color):
     """ 指定した色が置ける座標をすべて返す """
