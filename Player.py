@@ -143,7 +143,7 @@ class MC(Player):
                         pass
                     else:
                         loop_board = ReverseCommon.put_stone(loop_board, me_color, me_candidates[0], me_candidates[1])
-        # print "select"+str(max(score_map.values()[0]))
-        print score_map
-        print "select"+str(max(score_map.values()[0]))
+        # print score_map
+        # print "select"+str(max(score_map.values())[1])
+        return max(score_map.values())[1]
         return max(score_map.values()[0])

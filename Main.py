@@ -14,12 +14,12 @@ if __name__ == "__main__":
     white_win = 0
 
     # 試行回数
-    times = 10
+    times = 1
     # times = 100
 
     # 盤面を出力するか
-    output = True
-    # output = False
+    # output = True
+    output = False
 
     print "start:", datetime.datetime.today()
 
