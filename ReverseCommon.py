@@ -253,4 +253,7 @@ def print_board(board):
                 row += "●"
             row += "|"
         print row
+    print "----"
+    print "white "+str(get_score(board, WHITE))
+    print "black "+str(get_score(board, BLACK))
     print ""

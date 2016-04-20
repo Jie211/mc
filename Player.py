@@ -126,7 +126,7 @@ class MC(Player):
         for this_candidate in main_candidates:
             this_board = ReverseCommon.put_stone(board, me_color, this_candidate[0], this_candidate[1])
             score_map[str(this_candidate)] = [0,this_candidate]
-            for i in xrange(50):
+            for i in xrange(100):
                 loop_board = copy.deepcopy(this_board)
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):
@@ -143,4 +143,7 @@ class MC(Player):
                         pass
                     else:
                         loop_board = ReverseCommon.put_stone(loop_board, me_color, me_candidates[0], me_candidates[1])
+        # print "select"+str(max(score_map.values()[0]))
+        print score_map
+        print "select"+str(max(score_map.values()[0]))
         return max(score_map.values()[0])

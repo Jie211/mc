@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import ReverseCommon
+import sys
 
 
 class Game:
@@ -54,7 +55,6 @@ class Game:
                     print "pass"
                 if output_board:
                     ReverseCommon.print_board(self._reverse_board.board)
-
             # 置けなくなったら終了
             if self._reverse_board.is_game_set():
                 break

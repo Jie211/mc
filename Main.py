@@ -14,12 +14,12 @@ if __name__ == "__main__":
     white_win = 0
 
     # 試行回数
-    # times = 1
-    times = 100
+    times = 10
+    # times = 100
 
     # 盤面を出力するか
-    # output = True
-    output = False
+    output = True
+    # output = False
 
     print "start:", datetime.datetime.today()
 
@@ -44,7 +44,8 @@ if __name__ == "__main__":
         else:
             white_win += 1
 
+
     print "end", datetime.datetime.today()
 
     # 各AIの勝利数
-    phrint "black:", black_win, ", white:", white_win
+    print "black:", black_win, ", white:", white_win
