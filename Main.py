@@ -30,8 +30,8 @@ if __name__ == "__main__":
         reverse_board = ReverseBoard.ReverseBoard()
 
         # プレイヤー
-        black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)
-        # black_player = Player.MC(ReverseCommon.BLACK)
+        # black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)
+        black_player = Player.MC(ReverseCommon.BLACK)
         white_player = Player.RandomAi(ReverseCommon.WHITE)
 
         # ゲーム開始
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     print "end", datetime.datetime.today()
 
     # 各AIの勝利数
-    print "black:", black_win, ", white:", white_win
+    phrint "black:", black_win, ", white:", white_win
