@@ -14,25 +14,29 @@ if __name__ == "__main__":
     white_win = 0
 
     # 試行回数
-    times = 1
-    # times = 100
+    # times = 1
+    times = 1 
 
     # 盤面を出力するか
     # output = True
     output = False
 
-    print "start:", datetime.datetime.today()
+    print ("start:" + str(datetime.datetime.today()))
 
     # 勝負
-    for i in range(0, times):
+    # for i in range(0, times):
+    for i in [None]*times:
 
         # 盤面作成
         reverse_board = ReverseBoard.ReverseBoard()
 
         # プレイヤー
         # black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)
+        # black_player = Player.Less_chance(ReverseCommon.BLACK)
         black_player = Player.MC(ReverseCommon.BLACK)
         white_player = Player.RandomAi(ReverseCommon.WHITE)
+        # white_player = Player.Probability_select(ReverseCommon.WHITE)
+        # white_player = Player.Less_chance(ReverseCommon.WHITE)
 
         # ゲーム開始
         game = Game.Game(black_player, white_player, reverse_board)
@@ -44,8 +48,9 @@ if __name__ == "__main__":
         else:
             white_win += 1
 
+        print ("black_win = "+str(black_win)+" white_win = "+str(white_win))
 
-    print "end", datetime.datetime.today()
+    print ("end"+ str(datetime.datetime.today()))
 
     # 各AIの勝利数
-    print "black:", black_win, ", white:", white_win
+    print ("black:", black_win, ", white:", white_win)

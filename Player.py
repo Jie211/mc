@@ -68,6 +68,178 @@ class NextStoneMaxAi(Player):
         max_score_candidates = score_candidates_map[max_score]
         return max_score_candidates[random.randint(0, len(max_score_candidates) - 1)]
 
+class Probability_select(Player):
+    
+    def other_color(self):
+        if self._color == True:
+            return  False
+        else:
+            return  True
+    def most_score(self, board):
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+        score_candidates_map = {}
+        for candidates in all_candidates:
+            next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
+            score = ReverseCommon.get_score(next_board, self._color)
+            if not score_candidates_map.has_key(score):
+                score_candidates_map[score]=[]
+            score_candidates_map[score].append(candidates)
+        
+        max_score = max(score_candidates_map)
+        max_score_candidates = score_candidates_map[max_score]
+        return max_score_candidates[random.randint(0, len(max_score_candidates)-1)]
+
+    def check_end(self, board, score, candidate):
+        if ReverseCommon.is_game_set(board):
+            if self.who_win(board) == 1:
+                score[str(candidate)][0] +=1
+                return True
+            else:
+                return True
+        else:
+            return False
+
+    def less_ai(self, board):
+        pc_color = self.other_color()
+        me_color = self._color
+
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+        chance_candidates_map={}
+        for candidates in all_candidates:
+            next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
+            enemy_candidates = ReverseCommon.get_puttable_points(next_board, pc_color)
+            if len(enemy_candidates) == 0:
+                return candidates
+
+            get_chance = len(enemy_candidates)
+            if not chance_candidates_map.has_key(get_chance):
+                chance_candidates_map[get_chance]=[]
+            chance_candidates_map[get_chance].append(candidates)
+
+        min_chance = min(chance_candidates_map)
+        min_chance_candidates = chance_candidates_map[min_chance]
+        return min_chance_candidates[0]
+
+    def max_ai(self, board):
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+
+        if random.randint(1, 100) <= 0:
+            index = random.randint(0, len(all_candidates) - 1)
+            return all_candidates[index]
+
+        score_candidates_map = {}
+        for candidates in all_candidates:
+            next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
+            score = ReverseCommon.get_score(next_board, self._color)
+
+            if not score_candidates_map.has_key(score):
+                score_candidates_map[score] = []
+
+            score_candidates_map[score].append(candidates);
+
+        max_score = max(score_candidates_map)
+        max_score_candidates = score_candidates_map[max_score]
+        return max_score_candidates[random.randint(0, len(max_score_candidates) - 1)]
+
+    def rand_ai(self, board):
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+        else:
+            # ランダムで次の手を選ぶ
+           index = random.randint(0, len(all_candidates) - 1)
+           return all_candidates[index]
+
+    def choose(self, candidates, probabilities):
+        probabilities = [sum(probabilities[:x+1]) for x in range(len(probabilities))]
+        if probabilities[-1] > 1.0:
+            #確率の合計が100%を超えていた場合は100％になるように調整する
+            probabilities = [x/probabilities[-1] for x in probabilities]
+        rand = random.random()
+        for candidate, probability in zip(candidates, probabilities):
+            if rand < probability:
+                return candidate
+        #どれにも当てはまらなかった場合はNoneを返す
+        return None
+
+    def get_plan(self):
+        return self.choose([1, 2, 3], [0.7, 0.2, 0.1])
+    def next_move(self, board):
+        plan = self.get_plan()
+        if plan == 1:
+            return self.rand_ai(board)
+        elif plan == 2:
+            return self.max_ai(board)
+        elif plan == 3:
+            return self.less_ai(board)
+
+
+
+class Less_chance(Player):
+    def other_color(self):
+        if self._color == True:
+            return  False
+        else:
+            return  True
+    def most_score(self, board):
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+        score_candidates_map = {}
+        for candidates in all_candidates:
+            next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
+            score = ReverseCommon.get_score(next_board, self._color)
+            if not score_candidates_map.has_key(score):
+                score_candidates_map[score]=[]
+            score_candidates_map[score].append(candidates)
+        
+        max_score = max(score_candidates_map)
+        max_score_candidates = score_candidates_map[max_score]
+        return max_score_candidates[random.randint(0, len(max_score_candidates)-1)]
+
+    def check_end(self, board, score, candidate):
+        if ReverseCommon.is_game_set(board):
+            if self.who_win(board) == 1:
+                score[str(candidate)][0] +=1
+                return True
+            else:
+                return True
+        else:
+            return False
+
+    def next_move(self, board):
+        pc_color = self.other_color()
+        me_color = self._color
+
+        all_candidates = ReverseCommon.get_puttable_points(board, self._color)
+        if len(all_candidates) == 0:
+            return -1
+        chance_candidates_map={}
+        for candidates in all_candidates:
+            next_board = ReverseCommon.put_stone(board, self._color, candidates[0], candidates[1])
+            enemy_candidates = ReverseCommon.get_puttable_points(next_board, pc_color)
+            if len(enemy_candidates) == 0:
+                return candidates
+
+            get_chance = len(enemy_candidates)
+            if not chance_candidates_map.has_key(get_chance):
+                chance_candidates_map[get_chance]=[]
+            chance_candidates_map[get_chance].append(candidates)
+
+        min_chance = min(chance_candidates_map)
+        min_chance_candidates = chance_candidates_map[min_chance]
+        return min_chance_candidates[0]
+
+            
+
+
+
 class MC(Player):
     def next_rand(self, color, board):
         all_candidates = ReverseCommon.get_puttable_points(board, color)
@@ -126,7 +298,8 @@ class MC(Player):
         for this_candidate in main_candidates:
             this_board = ReverseCommon.put_stone(board, me_color, this_candidate[0], this_candidate[1])
             score_map[str(this_candidate)] = [0,this_candidate]
-            for i in xrange(100):
+            # for i in range(100):
+            for i in [None]*100:
                 loop_board = copy.deepcopy(this_board)
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):
@@ -143,7 +316,4 @@ class MC(Player):
                         pass
                     else:
                         loop_board = ReverseCommon.put_stone(loop_board, me_color, me_candidates[0], me_candidates[1])
-        # print score_map
-        # print "select"+str(max(score_map.values())[1])
         return max(score_map.values())[1]
-        return max(score_map.values()[0])

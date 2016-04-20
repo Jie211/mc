@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import copy
+from numba import jit
 
 # 定数
 # 何も置かれていない
@@ -33,6 +34,7 @@ def get_remain(board):
     return count
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_reversible_stone(board, i, j, color):
     """ 指定座標の右側に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -45,6 +47,7 @@ def has_right_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_reversible_stone(board, i, j, color):
     """ 指定座標の左側に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -57,6 +60,7 @@ def has_left_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_upper_reversible_stone(board, i, j, color):
     """ 指定座標の上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -69,6 +73,7 @@ def has_upper_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_lower_reversible_stone(board, i, j, color):
     """ 指定座標の下に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -81,6 +86,7 @@ def has_lower_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_upper_reversible_stone(board, i, j, color):
     """ 指定座標の右上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -95,6 +101,7 @@ def has_right_upper_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_lower_reversible_stone(board, i, j, color):
     """ 指定座標の左下に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -109,6 +116,7 @@ def has_left_lower_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_left_upper_reversible_stone(board, i, j, color):
     """ 指定座標の左上に返せる石があるか調べる """
     enemy = not(bool(color))
@@ -123,6 +131,7 @@ def has_left_upper_reversible_stone(board, i, j, color):
     return False
 
 
+@jit('b1(b1[:,:], i8, i8, b1)')
 def has_right_lower_reversible_stone(board, i, j, color):
     """ 指定座標の右下に返せる石があるか調べる """
     enemy = not(color)
@@ -173,7 +182,6 @@ def get_puttable_points(board, color):
                 points.append([i, j])
                 continue
     return points
-
 
 def put_stone(board, color, i, j):
     """ ひっくり返す """
@@ -241,7 +249,7 @@ def put_stone(board, color, i, j):
 
 def print_board(board):
     """盤面表示"""
-    print "   0 1 2 3 4 5 6 7"
+    print ("   0 1 2 3 4 5 6 7")
     for i in range(0, 8):
         row = str(i) + " |"
         for j in range(0, 8):
@@ -252,8 +260,19 @@ def print_board(board):
             else:
                 row += "●"
             row += "|"
-        print row
-    print "----"
-    print "white "+str(get_score(board, WHITE))
-    print "black "+str(get_score(board, BLACK))
-    print ""
+        print (row)
+    print ("----")
+    print ("white "+str(get_score(board, WHITE)))
+    print ("black "+str(get_score(board, BLACK)))
+    print ("")
+def choose(candidates, probabilities):
+    probabilities = [sum(probabilities[:x+1]) for x in range(len(probabilities))]
+    if probabilities[-1] > 1.0:
+        #確率の合計が100%を超えていた場合は100％になるように調整する
+        probabilities = [x/probabilities[-1] for x in probabilities]
+        rand = random.random()
+        for candidate, probability in zip(candidates, probabilities):
+            if rand < probability:
+                return candidate
+            #どれにも当てはまらなかった場合はNoneを返す
+        return None
