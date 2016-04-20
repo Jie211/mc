@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     # 試行回数
     # times = 1
-    times = 10
+    times = 100
 
     # 盤面を出力するか
     # output = True
@@ -30,8 +30,8 @@ if __name__ == "__main__":
         reverse_board = ReverseBoard.ReverseBoard()
 
         # プレイヤー
-        # black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)
-        black_player = Player.MC(ReverseCommon.BLACK)
+        black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)
+        # black_player = Player.MC(ReverseCommon.BLACK)
         white_player = Player.RandomAi(ReverseCommon.WHITE)
 
         # ゲーム開始
