@@ -14,12 +14,12 @@ if __name__ == "__main__":
     white_win = 0
 
     # 試行回数
-    times = 100
-    # times = 20 
+    # times = 1
+    times = 20 
 
     # 盤面を出力するか
-    output = True
-    # output = False
+    # output = True
+    output = False
 
     print ("start:" + str(datetime.datetime.today()))
 
@@ -35,10 +35,10 @@ if __name__ == "__main__":
         # black_player = Player.Less_chance(ReverseCommon.BLACK)
         black_player = Player.MC(ReverseCommon.BLACK)
         # black_player = Player.MC(ReverseCommon.BLACK)
-        # white_player = Player.RandomAi(ReverseCommon.WHITE)
+        white_player = Player.RandomAi(ReverseCommon.WHITE)
         # white_player = Player.Probability_select(ReverseCommon.WHITE)
         # white_player = Player.Less_chance(ReverseCommon.WHITE)
-        white_player = Player.Less_chance(ReverseCommon.WHITE)
+        # white_player = Player.Less_chance(ReverseCommon.WHITE)
 
         # ゲーム開始
         game = Game.Game(black_player, white_player, reverse_board)

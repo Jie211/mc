@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import operator
 
 import copy
 import random
@@ -277,20 +278,16 @@ class MC(Player):
     def check_end(self, board, score, candidate):
         if ReverseCommon.is_game_set(board):
             if self.who_win(board) == 1:
-                score[str(candidate)][0] +=1
+
+                # score[str(candidate)][0] +=1
+                map_index = candidate[0]*10+candidate[1]
+                score[map_index] +=1
+
                 return True
             else:
                 return True
         else:
             return False
-
-    def choice(self, color, board):
-        candidates = self.next_rand(color, board)
-        if candidates == -1:
-            pass
-        else:
-            board = ReverseCommon.put_stone(board, color, candidates[0], candidates[1])
-
 
     def next_move(self, board):
         score_map = {}
@@ -303,10 +300,13 @@ class MC(Player):
 
         for this_candidate in main_candidates:
             this_board = ReverseCommon.put_stone(board, me_color, this_candidate[0], this_candidate[1])
-            score_map[str(this_candidate)] = [0,this_candidate]
-            for i in range(10):
-            # for i in [None]*10:
-                loop_board = copy.deepcopy(this_board)
+
+            # score_map[str(this_candidate)] = [0,this_candidate]
+            map_index=this_candidate[0]*10+this_candidate[1]
+            score_map[map_index] = 0
+
+            loop_board = copy.deepcopy(this_board)
+            for i in range(50):
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):
                         break
@@ -322,4 +322,7 @@ class MC(Player):
                         pass
                     else:
                         loop_board = ReverseCommon.put_stone(loop_board, me_color, me_candidates[0], me_candidates[1])
-        return max(score_map.values())[1]
+        get_max =  max(score_map.iteritems(), key=operator.itemgetter(1))[0]
+        ans = [get_max/10, get_max%10]
+        # return max(score_map.values())[1]
+        return ans
