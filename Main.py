@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
 
 # Main function
 import ReverseBoard
@@ -18,8 +19,8 @@ if __name__ == "__main__":
     # times = 100 
 
     # 盤面を出力するか
-    output = True
-    # output = False
+    # output = True
+    output = False
 
     print ("start:" + str(datetime.datetime.today()))
 
@@ -29,6 +30,8 @@ if __name__ == "__main__":
 
         # 盤面作成
         reverse_board = ReverseBoard.ReverseBoard()
+        # print reverse_board.board
+        # sys.exit()
 
         # プレイヤー
         # black_player = Player.NextStoneMaxAi(ReverseCommon.BLACK)

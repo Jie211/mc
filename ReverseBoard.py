@@ -13,6 +13,7 @@ class ReverseBoard:
         self._board[4][4] = ReverseCommon.WHITE
         self._board[3][4] = ReverseCommon.BLACK
         self._board[4][3] = ReverseCommon.BLACK
+
         # 黒のターンに初期化
         self._turn = ReverseCommon.BLACK
 

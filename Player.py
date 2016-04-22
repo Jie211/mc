@@ -306,6 +306,13 @@ class MC(Player):
 
             for i in range(50):
                 loop_board = copy.deepcopy(this_board)
+                # loop_board2 = ReverseCommon.Copy(this_board, use_deepcopy=False)
+                # if loop_board != loop_board2:
+                  # print "!!!!!!!!!!!!"
+                # else:
+                  # print id(loop_board)
+                  # print id(loop_board2)
+                # sys.exit()
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):
                         break

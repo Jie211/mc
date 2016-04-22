@@ -15,6 +15,46 @@ BLACK = True
 
 # Common Functions
 
+# def deepish_copy(org):
+#   out = dict().fromkeys(org)
+#   for k,v in org.iteritems():
+#     try:
+#       out[k] = v.copy()   # dicts, sets
+#     except AttributeError:
+#       try:
+#         out[k] = v[:]   # lists, tuples, strings, unicode
+#       except TypeError:
+#         out[k] = v      # ints
+dignore = {str: None, unicode: None, int: None, type(None): None}
+def Copy(obj, use_deepcopy=True):
+  t=type(obj)
+  if t in (list, tuple):
+    if t == tuple:
+      is_tuple=True
+      obj = list(obj)
+    else:
+      obj=obj[:]
+      is_tuple=False
+
+    for x in xrange(len(obj)):
+      if type(obj[x]) in dignore:
+        continue
+      obj[x] = Copy(obj[x], use_deepcopy)
+
+    if is_tuple:
+      obj=tuple(obj)
+  elif t == dict:
+    obj = obj.copy()
+    for k in obj:
+      if type(obj[k]) in dignore:
+        continue
+      obj[j] = Copy(obj[k], use_deepcopy)
+  elif t in dignore:
+    pass
+  elif use_deepcopy:
+    obj = deepcopy(obj)
+  return obj
+
 
 def get_score(board, color):
     """ 指定した色の現在のスコアを返す """
