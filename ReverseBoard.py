@@ -33,7 +33,7 @@ class ReverseBoard:
             self.change_turn()
 
     def is_game_set(self):
-        """ ゲームセットか返す　"""
+        """ ゲームセットか返す"""
         return ReverseCommon.is_game_set(self._board)
 
     def is_my_turn(self, color):

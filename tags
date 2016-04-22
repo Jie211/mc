@@ -1,0 +1,101 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BLACK	ReverseCommon.py	/^BLACK = True$/;"	v
+CustomReverseBoard	ReverseBoard.py	/^class CustomReverseBoard(ReverseBoard):$/;"	c
+CustomReverseBoard	ReverseBord.py	/^class CustomReverseBoard(ReverseBoard):$/;"	c
+Game	Game.py	/^class Game:$/;"	c
+Game	Main.py	/^import Game$/;"	i
+Game	Player.py	/^import Game$/;"	i
+Less_chance	Player.py	/^class Less_chance(Player):$/;"	c
+MC	Player.py	/^class MC(Player):$/;"	c
+NONE	ReverseCommon.py	/^NONE = None$/;"	v
+NextStoneMaxAi	Player.py	/^class NextStoneMaxAi(Player):$/;"	c
+Player	Main.py	/^import Player$/;"	i
+Player	Player.py	/^class Player:$/;"	c
+Probability_select	Player.py	/^class Probability_select(Player):$/;"	c
+RandomAi	Player.py	/^class RandomAi(Player):$/;"	c
+ReverseBoard	Main.py	/^import ReverseBoard$/;"	i
+ReverseBoard	Player.py	/^import ReverseBoard$/;"	i
+ReverseBoard	ReverseBoard.py	/^class ReverseBoard:$/;"	c
+ReverseBoard	ReverseBord.py	/^class ReverseBoard:$/;"	c
+ReverseCommon	Game.py	/^import ReverseCommon$/;"	i
+ReverseCommon	Main.py	/^import ReverseCommon$/;"	i
+ReverseCommon	Player.py	/^import ReverseCommon$/;"	i
+ReverseCommon	ReverseBoard.py	/^import ReverseCommon$/;"	i
+ReverseCommon	ReverseBord.py	/^import ReverseCommon$/;"	i
+WHITE	ReverseCommon.py	/^WHITE = False$/;"	v
+__init__	Game.py	/^    def __init__(self, player1, player2, reverse_board):$/;"	m	class:Game
+__init__	Player.py	/^    def __init__(self, color):$/;"	m	class:Player
+__init__	ReverseBoard.py	/^    def __init__(self):$/;"	m	class:ReverseBoard
+__init__	ReverseBoard.py	/^    def __init__(self, board, turn):$/;"	m	class:CustomReverseBoard
+__init__	ReverseBord.py	/^    def __init__(self):$/;"	m	class:ReverseBoard
+__init__	ReverseBord.py	/^    def __init__(self, board, turn):$/;"	m	class:CustomReverseBoard
+black_player	Main.py	/^        black_player = Player.MC(ReverseCommon.BLACK)$/;"	v
+black_win	Main.py	/^    black_win = 0$/;"	v
+board	ReverseBoard.py	/^    def board(self):$/;"	m	class:ReverseBoard
+board	ReverseBord.py	/^    def board(self):$/;"	m	class:ReverseBoard
+change_turn	ReverseBoard.py	/^    def change_turn(self):$/;"	m	class:ReverseBoard
+change_turn	ReverseBord.py	/^    def change_turn(self):$/;"	m	class:ReverseBoard
+check_end	Player.py	/^    def check_end(self, board, score, candidate):$/;"	m	class:Less_chance
+check_end	Player.py	/^    def check_end(self, board, score, candidate):$/;"	m	class:MC
+check_end	Player.py	/^    def check_end(self, board, score, candidate):$/;"	m	class:Probability_select
+choose	Player.py	/^    def choose(self, candidates, probabilities):$/;"	m	class:Probability_select
+choose	ReverseCommon.py	/^def choose(candidates, probabilities):$/;"	f
+color	Player.py	/^    def color(self):$/;"	m	class:Player
+copy	Player.py	/^import copy$/;"	i
+copy	ReverseCommon.py	/^import copy$/;"	i
+datetime	Main.py	/^import datetime$/;"	i
+game	Main.py	/^        game = Game.Game(black_player, white_player, reverse_board)$/;"	v
+get_plan	Player.py	/^    def get_plan(self):$/;"	m	class:Probability_select
+get_puttable_points	ReverseCommon.py	/^def get_puttable_points(board, color):$/;"	f
+get_remain	ReverseCommon.py	/^def get_remain(board):$/;"	f
+get_score	ReverseCommon.py	/^def get_score(board, color):$/;"	f
+get_winner	Game.py	/^    def get_winner(self):$/;"	m	class:Game
+has_left_lower_reversible_stone	ReverseCommon.py	/^def has_left_lower_reversible_stone(board, i, j, color):$/;"	f
+has_left_reversible_stone	ReverseCommon.py	/^def has_left_reversible_stone(board, i, j, color):$/;"	f
+has_left_upper_reversible_stone	ReverseCommon.py	/^def has_left_upper_reversible_stone(board, i, j, color):$/;"	f
+has_lower_reversible_stone	ReverseCommon.py	/^def has_lower_reversible_stone(board, i, j, color):$/;"	f
+has_right_lower_reversible_stone	ReverseCommon.py	/^def has_right_lower_reversible_stone(board, i, j, color):$/;"	f
+has_right_reversible_stone	ReverseCommon.py	/^def has_right_reversible_stone(board, i, j, color):$/;"	f
+has_right_upper_reversible_stone	ReverseCommon.py	/^def has_right_upper_reversible_stone(board, i, j, color):$/;"	f
+has_upper_reversible_stone	ReverseCommon.py	/^def has_upper_reversible_stone(board, i, j, color):$/;"	f
+is_game_set	ReverseBoard.py	/^    def is_game_set(self):$/;"	m	class:ReverseBoard
+is_game_set	ReverseBord.py	/^    def is_game_set(self):$/;"	m	class:ReverseBoard
+is_game_set	ReverseCommon.py	/^def is_game_set(board):$/;"	f
+is_my_turn	ReverseBoard.py	/^    def is_my_turn(self, color):$/;"	m	class:ReverseBoard
+is_my_turn	ReverseBord.py	/^    def is_my_turn(self, color):$/;"	m	class:ReverseBoard
+less_ai	Player.py	/^    def less_ai(self, board):$/;"	m	class:Probability_select
+max_ai	Player.py	/^    def max_ai(self, board):$/;"	m	class:Probability_select
+most_score	Player.py	/^    def most_score(self, board):$/;"	m	class:Less_chance
+most_score	Player.py	/^    def most_score(self, board):$/;"	m	class:Probability_select
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:Less_chance
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:MC
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:NextStoneMaxAi
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:Player
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:Probability_select
+next_move	Player.py	/^    def next_move(self, board):$/;"	m	class:RandomAi
+next_rand	Player.py	/^    def next_rand(self, color, board):$/;"	m	class:MC
+operator	Player.py	/^import operator$/;"	i
+other_color	Player.py	/^    def other_color(self):$/;"	m	class:Less_chance
+other_color	Player.py	/^    def other_color(self):$/;"	m	class:MC
+other_color	Player.py	/^    def other_color(self):$/;"	m	class:Probability_select
+output	Main.py	/^    output = True$/;"	v
+play	Game.py	/^    def play(self, output_board):$/;"	m	class:Game
+print_board	ReverseCommon.py	/^def print_board(board):$/;"	f
+put_stone	ReverseBoard.py	/^    def put_stone(self, color, i, j):$/;"	m	class:ReverseBoard
+put_stone	ReverseBord.py	/^    def put_stone(self, color, i, j):$/;"	m	class:ReverseBoard
+put_stone	ReverseCommon.py	/^def put_stone(board, color, i, j):$/;"	f
+rand_ai	Player.py	/^    def rand_ai(self, board):$/;"	m	class:Probability_select
+random	Player.py	/^import random$/;"	i
+reverse_board	Main.py	/^        reverse_board = ReverseBoard.ReverseBoard()$/;"	v
+sys	Game.py	/^import sys$/;"	i
+sys	Player.py	/^import sys$/;"	i
+sys	ReverseCommon.py	/^import sys$/;"	i
+times	Main.py	/^    times = 1$/;"	v
+white_player	Main.py	/^        white_player = Player.Less_chance(ReverseCommon.WHITE)$/;"	v
+white_win	Main.py	/^    white_win = 0$/;"	v
+who_win	Player.py	/^    def who_win(self, board):$/;"	m	class:MC

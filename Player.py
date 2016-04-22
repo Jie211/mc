@@ -241,6 +241,7 @@ class Less_chance(Player):
 
         min_chance = min(chance_candidates_map)
         min_chance_candidates = chance_candidates_map[min_chance]
+        print str(me_color)+" Less "+str(min_chance_candidates[0])
         return min_chance_candidates[0]
 
             
@@ -278,11 +279,9 @@ class MC(Player):
     def check_end(self, board, score, candidate):
         if ReverseCommon.is_game_set(board):
             if self.who_win(board) == 1:
-
-                # score[str(candidate)][0] +=1
                 map_index = candidate[0]*10+candidate[1]
                 score[map_index] +=1
-
+                # score[str(candidate)][0] +=1
                 return True
             else:
                 return True
@@ -305,8 +304,8 @@ class MC(Player):
             map_index=this_candidate[0]*10+this_candidate[1]
             score_map[map_index] = 0
 
-            loop_board = copy.deepcopy(this_board)
             for i in range(50):
+                loop_board = copy.deepcopy(this_board)
                 while True:
                     if self.check_end(loop_board, score_map, this_candidate):
                         break
@@ -324,5 +323,10 @@ class MC(Player):
                         loop_board = ReverseCommon.put_stone(loop_board, me_color, me_candidates[0], me_candidates[1])
         get_max =  max(score_map.iteritems(), key=operator.itemgetter(1))[0]
         ans = [get_max/10, get_max%10]
-        # return max(score_map.values())[1]
+        print main_candidates
+        print score_map
+        print str(me_color)+" MC "+str(ans)
         return ans
+
+
+
