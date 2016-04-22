@@ -2,17 +2,23 @@
 # -*- coding: utf-8 -*-
 import ReverseCommon
 
+N = 8
 
 class ReverseBoard:
     """ オセロ盤 """
     def __init__(self):
         """ Constructor """
         # ボード初期化
-        self._board = [[ReverseCommon.NONE for i in range(8)] for j in range(8)]
-        self._board[3][3] = ReverseCommon.WHITE
-        self._board[4][4] = ReverseCommon.WHITE
-        self._board[3][4] = ReverseCommon.BLACK
-        self._board[4][3] = ReverseCommon.BLACK
+        # self._board = [[ReverseCommon.NONE for i in range(8)] for j in range(8)]
+        # self._board[3][3] = ReverseCommon.WHITE
+        # self._board[4][4] = ReverseCommon.WHITE
+        # self._board[3][4] = ReverseCommon.BLACK
+        # self._board[4][3] = ReverseCommon.BLACK
+        self._board = [ReverseCommon.NONE for i in xrange(64)]
+        self._board[3*N+3] = ReverseCommon.WHITE
+        self._board[4*N+4] = ReverseCommon.WHITE
+        self._board[3*N+4] = ReverseCommon.BLACK
+        self._board[4*N+3] = ReverseCommon.BLACK
 
         # 黒のターンに初期化
         self._turn = ReverseCommon.BLACK

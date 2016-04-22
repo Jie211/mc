@@ -15,6 +15,7 @@ class Game:
     def play(self, output_board):
         if output_board:
             ReverseCommon.print_board(self._reverse_board.board)
+        # sys.exit()
 
             # 勝負
         while True:

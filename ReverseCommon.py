@@ -13,6 +13,8 @@ WHITE = False
 # 黒
 BLACK = True
 
+N = 8
+
 # Common Functions
 
 # def deepish_copy(org):
@@ -61,7 +63,7 @@ def get_score(board, color):
     score = 0
     for i in range(0, 8):
         for j in range(0, 8):
-            if board[i][j] == color:
+            if board[i *N+ j] == color:
                 score += 1
     return score
 
@@ -71,7 +73,7 @@ def get_remain(board):
     count = 0
     for i in range(0, 8):
         for j in range(0, 8):
-            if board[i][j] is None:
+            if board[i *N+ j] is None:
                 count += 1
     return count
 
@@ -79,11 +81,11 @@ def get_remain(board):
 def has_right_reversible_stone(board, i, j, color):
     """ 指定座標の右側に返せる石があるか調べる """
     enemy = not(bool(color))
-    if j <= 5 and board[i][j+1] == enemy:
+    if j <= 5 and board[i *N+ (j+1)] == enemy:
         for k in range(j + 2, 8):
-            if board[i][k] == color:
+            if board[i *N+ k] == color:
                 return True
-            elif board[i][k] == NONE:
+            elif board[i *N+ k] == NONE:
                 break
     return False
 
@@ -91,11 +93,11 @@ def has_right_reversible_stone(board, i, j, color):
 def has_left_reversible_stone(board, i, j, color):
     """ 指定座標の左側に返せる石があるか調べる """
     enemy = not(bool(color))
-    if j >=2 and board[i][j-1] == enemy:
+    if j >=2 and board[i *N+ (j-1)] == enemy:
         for k in range(j - 2, -1, -1):
-            if board[i][k] == color:
+            if board[i *N+ k] == color:
                 return True
-            elif board[i][k] == NONE:
+            elif board[i *N+ k] == NONE:
                 break
     return False
 
@@ -103,11 +105,11 @@ def has_left_reversible_stone(board, i, j, color):
 def has_upper_reversible_stone(board, i, j, color):
     """ 指定座標の上に返せる石があるか調べる """
     enemy = not(bool(color))
-    if i >= 2 and board[i-1][j] == enemy:
+    if i >= 2 and board[(i-1) *N+ j] == enemy:
         for k in range(i - 2, -1, -1):
-            if board[k][j] == color:
+            if board[k *N+ j] == color:
                 return True
-            elif board[k][j] == NONE:
+            elif board[k *N+ j] == NONE:
                 break
     return False
 
@@ -115,11 +117,11 @@ def has_upper_reversible_stone(board, i, j, color):
 def has_lower_reversible_stone(board, i, j, color):
     """ 指定座標の下に返せる石があるか調べる """
     enemy = not(bool(color))
-    if i <= 5 and board[i+1][j] == enemy:
+    if i <= 5 and board[(i+1) *N+ j] == enemy:
         for k in range(i + 2, 8):
-            if board[k][j] == color:
+            if board[k *N+ j] == color:
                 return True
-            elif board[k][j] == NONE:
+            elif board[k *N+ j] == NONE:
                 break
     return False
 
@@ -127,12 +129,12 @@ def has_lower_reversible_stone(board, i, j, color):
 def has_right_upper_reversible_stone(board, i, j, color):
     """ 指定座標の右上に返せる石があるか調べる """
     enemy = not(bool(color))
-    if i >= 2 and j <= 5 and board[i-1][j+1] == enemy:
+    if i >= 2 and j <= 5 and board[(i-1) *N+ (j+1)] == enemy:
         k = 2
         while i - k >= 0 and j + k < 8:
-            if board[i-k][j+k] == color:
+            if board[(i-k) *N+ (j+k)] == color:
                 return True
-            elif board[i-k][j+k] == NONE:
+            elif board[(i-k) *N+ (j+k)] == NONE:
                 break
             k += 1
     return False
@@ -141,12 +143,12 @@ def has_right_upper_reversible_stone(board, i, j, color):
 def has_left_lower_reversible_stone(board, i, j, color):
     """ 指定座標の左下に返せる石があるか調べる """
     enemy = not(bool(color))
-    if j >= 2 and i <= 5 and board[i+1][j-1] == enemy:
+    if j >= 2 and i <= 5 and board[(i+1) *N+ (j-1)] == enemy:
         k = 2
         while i + k < 8 and j - k >= 0:
-            if board[i+k][j-k] == color:
+            if board[(i+k) *N+ (j-k)] == color:
                 return True
-            elif board[i+k][j-k] == NONE:
+            elif board[(i+k) *N+ (j-k)] == NONE:
                 break
             k += 1
     return False
@@ -155,12 +157,12 @@ def has_left_lower_reversible_stone(board, i, j, color):
 def has_left_upper_reversible_stone(board, i, j, color):
     """ 指定座標の左上に返せる石があるか調べる """
     enemy = not(bool(color))
-    if i >= 2 and j >= 2 and board[i-1][j-1] == enemy:
+    if i >= 2 and j >= 2 and board[(i-1) *N+ (j-1)] == enemy:
         k = 2
         while i - k >= 0 and j - k >= 0:
-            if board[i-k][j-k] == color:
+            if board[(i-k) *N+ (j-k)] == color:
                 return True
-            elif board[i-k][j-k] == NONE:
+            elif board[(i-k) *N+ (j-k)] == NONE:
                 break
             k += 1
     return False
@@ -169,12 +171,12 @@ def has_left_upper_reversible_stone(board, i, j, color):
 def has_right_lower_reversible_stone(board, i, j, color):
     """ 指定座標の右下に返せる石があるか調べる """
     enemy = not(color)
-    if i <= 5 and j <= 5 and board[i+1][j+1] == enemy:
+    if i <= 5 and j <= 5 and board[(i+1) *N+ (j+1)] == enemy:
         k = 2
         while i + k < 8 and j + k < 8:
-            if board[i+k][j+k] == color:
+            if board[(i+k) *N+ (j+k)] == color:
                 return True
-            elif board[i+k][j+k] == NONE:
+            elif board[(i+k) *N+ (j+k)] == NONE:
                 break
             k += 1
     return False
@@ -191,7 +193,7 @@ def get_puttable_points(board, color):
     points = []
     for i in range(0, 8):
         for j in range(0, 8):
-            if board[i][j] != NONE:
+            if board[i *N+ j] != NONE:
                 # 何か置かれている場所はする
                 continue
 
@@ -223,60 +225,60 @@ def put_stone(board, color, i, j):
     # 右側をひっくり返しord[i][k] != color:
     if has_right_reversible_stone(new_board, i, j, color):
         k = j + 1
-        while new_board[i][k] != color:
-            new_board[i][k] = color
+        while new_board[i *N+ k] != color:
+            new_board[i *N+ k] = color
             k += 1
 
     # 左側をひっくり返していく
     if has_left_reversible_stone(new_board, i, j, color):
         k = j - 1
-        while new_board[i][k] != color:
-            new_board[i][k] = color
+        while new_board[i *N+ k] != color:
+            new_board[i *N+ k] = color
             k -= 1
 
     # 上側をひっくり返していく
     if has_upper_reversible_stone(new_board, i, j, color):
         k = i - 1
-        while new_board[k][j] != color:
-            new_board[k][j] = color
+        while new_board[k *N+ j] != color:
+            new_board[k *N+ j] = color
             k -= 1
 
     # 下側をひっくり返していく
     if has_lower_reversible_stone(new_board, i, j, color):
         k = i + 1
-        while new_board[k][j] != color:
-            new_board[k][j] = color
+        while new_board[k *N+ j] != color:
+            new_board[k *N+ j] = color
             k += 1
 
     # 右下をひっくりかえしていく
     if has_right_lower_reversible_stone(new_board, i, j, color):
         k = 1
-        while new_board[i+k][j+k] != color:
-            new_board[i+k][j+k] = color
+        while new_board[(i+k) *N+ (j+k)] != color:
+            new_board[(i+k) *N+ (j+k)] = color
             k += 1
 
     # 左上をひっくりかえしていく
     if has_left_upper_reversible_stone(new_board, i, j, color):
         k = 1
-        while new_board[i-k][j-k] != color:
-            new_board[i-k][j-k] = color
+        while new_board[(i-k) *N+ (j-k)] != color:
+            new_board[(i-k) *N+ (j-k)] = color
             k += 1
 
     # 右上をひっくりかえしていく
     if has_right_upper_reversible_stone(new_board, i, j, color):
         k = 1
-        while new_board[i-k][j+k] != color:
-            new_board[i-k][j+k] = color
+        while new_board[(i-k) *N+ (j+k)] != color:
+            new_board[(i-k) *N+ (j+k)] = color
             k += 1
 
     # 左下をひっくり返していく
     if has_left_lower_reversible_stone(new_board, i, j, color):
         k = 1
-        while new_board[i+k][j-k] != color:
-            new_board[i+k][j-k] = color
+        while new_board[(i+k) *N+ (j-k)] != color:
+            new_board[(i+k) *N+ (j-k)] = color
             k += 1
 
-    new_board[i][j] = color
+    new_board[i *N+ j] = color
     return new_board
 
 
@@ -286,9 +288,9 @@ def print_board(board):
     for i in range(0, 8):
         row = str(i) + " |"
         for j in range(0, 8):
-            if board[i][j] == NONE:
+            if board[i *N+ j] == NONE:
                 row += " "
-            elif board[i][j] == WHITE:
+            elif board[i *N+ j] == WHITE:
                 row += "○"
             else:
                 row += "●"
@@ -298,6 +300,7 @@ def print_board(board):
     print ("white "+str(get_score(board, WHITE)))
     print ("black "+str(get_score(board, BLACK)))
     print ("")
+
 def choose(candidates, probabilities):
     probabilities = [sum(probabilities[:x+1]) for x in range(len(probabilities))]
     if probabilities[-1] > 1.0:
