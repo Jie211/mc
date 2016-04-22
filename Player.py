@@ -296,6 +296,8 @@ class MC(Player):
         main_candidates = ReverseCommon.get_puttable_points(board, me_color)
         if len(main_candidates) == 0:
             return -1
+        elif len(main_candidates) == 1:
+            return main_candidates[0]
 
         for this_candidate in main_candidates:
             this_board = ReverseCommon.put_stone(board, me_color, this_candidate[0], this_candidate[1])
@@ -304,7 +306,7 @@ class MC(Player):
             map_index=this_candidate[0]*10+this_candidate[1]
             score_map[map_index] = 0
 
-            for i in range(50):
+            for i in range(10):
                 # loop_board = copy.deepcopy(this_board)
                 loop_board = this_board[:]
                 # loop_board2 = ReverseCommon.Copy(this_board, use_deepcopy=False)

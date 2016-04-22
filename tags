@@ -13,6 +13,8 @@ Game	Main.py	/^import Game$/;"	i
 Game	Player.py	/^import Game$/;"	i
 Less_chance	Player.py	/^class Less_chance(Player):$/;"	c
 MC	Player.py	/^class MC(Player):$/;"	c
+N	ReverseBoard.py	/^N = 8$/;"	v
+N	ReverseCommon.py	/^N = 8$/;"	v
 NONE	ReverseCommon.py	/^NONE = None$/;"	v
 NextStoneMaxAi	Player.py	/^class NextStoneMaxAi(Player):$/;"	c
 Player	Main.py	/^import Player$/;"	i
